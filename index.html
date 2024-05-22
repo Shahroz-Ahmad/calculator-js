@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainbody {
+            height: fit-content;
+            min-width: 40%;
+            max-width: 40%;
+            border: 7px solid black;
+            border-radius: 2%;
+            margin: 10% auto;
+            background: black;
+            text-align: center;
+        }
+
+        input {
+            height: 12vh;
+            width: 100%;
+            border-radius: 1%;
+            font-size: 4rem;
+            text-align: end;
+            background-color: black;
+            border: 0.5px solid white;
+            color: white;
+
+        }
+
+        button {
+            width: 10rem;
+            height: 5rem;
+            font-size: 2rem;
+            background: orange;
+            color: white;
+            margin: 3px 10px;
+            border: 4px solid black;
+            border-radius: 50%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainbody">
+        <input type="text">
+        <button>9</button>
+        <button>8</button>
+        <button>7</button>
+        <button>6</button>
+        <button>5</button>
+        <button>4</button>
+        <button>3</button>
+        <button>2</button>
+        <button>1</button>
+        <button>0</button>
+        <button>00</button>
+        <button onclick="allclear()">AC</button>
+        <button>*</button>
+        <button>/</button>
+        <button>+</button>
+        <button>-</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="oneclear()">delete</button>
+
+    </div>
+    <script>
+        var inp = document.querySelector('input')
+        var btn = document.querySelectorAll('button')
+        var clears = null
+        function oneclear() {
+            inp.value = inp.value.slice(0, -1)
+        }
+        function allclear() {
+            clears = null
+            inp.value = clears
+        }
+        function calculate() {
+            inp.value = eval(inp.value)
+        }
+        btn.forEach((ele) => {
+            ele.addEventListener('click', (a) => {
+                if (a.target.innerText != '=' && a.target.innerText != 'AC' && a.target.innerText != 'delete') {
+                    inp.value += a.target.innerText
+                } else if (a.target.innerText == '=') {
+                    calculate()
+                } else if (a.target.innerText == 'AC') {
+                    allclear()
+                }
+            })
+        })
+
+    </script>
+</body>
+
+
+</html>
